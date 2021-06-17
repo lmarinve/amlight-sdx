@@ -64,7 +64,10 @@ def get_ports(node, interfaces):
 def get_node(switch):
 
     node = dict()
-    node["name"] = switch["data_path"].split(",")[1].split(": ")[1]
+    # try:
+    #     node["name"] = switch["data_path"].split(",")[1].split(": ")[1]
+    # except:
+    node["name"] = switch["data_path"]
     node["id"] = f"urn:sdx:node:{TOPOLOGY_NAME}t:%s" % node["name"]
     node["location"] = {"address": "Miami,FL",
                         "latitude": switch["metadata"]["lat"],
@@ -119,13 +122,13 @@ def get_time_stamp():
     return datetime.datetime.now().strftime("%m%d%y-%H%M%S")
 
 
-def get_topology(kytos_topology):
+def get_topology(kytos_topology, version):
     topology = dict()
     topology["name"] = "AmLight-OXP"
     topology["id"] = f"urn:sdx:topology:{TOPOLOGY_NAME}"
     topology["nodes"] = get_nodes(kytos_topology["switches"])
     topology["time_stamp"] = get_time_stamp()
-    topology["version"] = 1
+    topology["version"] = version
     topology["domain_service"] = {}
     topology["links"] = get_links(kytos_topology["links"])
 

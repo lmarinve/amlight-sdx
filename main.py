@@ -3,16 +3,18 @@
 SDX API
 """
 
+import re
 import json
 import time
-
+import threading
 import requests
 from flask import jsonify, request
 from kytos.core import rest
 from kytos.core import KytosNApp, log
-from napps.amlight.sdx import settings
+#from napps.amlight.sdx import settings
 from napps.amlight.sdx.parse_topo import get_topology
 from kytos.core.helpers import listen_to
+import napps.amlight.sdx.storehouse
 
 
 class Main(KytosNApp):
@@ -29,8 +31,10 @@ class Main(KytosNApp):
 
         So, if you have any setup routine, insert it here.
         """
-        self.version = 1
         self.topology = dict()
+        # object to save and load storehouse variable
+        self.storehouse = napps.amlight.sdx.storehouse.StoreHouse(self.controller)
+        self.create_update_topology()
 
     def execute(self):
         """Run after the setup method execution.
@@ -54,19 +58,18 @@ class Main(KytosNApp):
         kytos_topology = requests.get("http://0.0.0.0:8181/api/kytos/topology/v3").json()
         return kytos_topology["topology"]
 
-    def bump_version(self):
-        self.version += 1
-
     @rest('v1/topology')
-    def get_topology(self):
+    def get_topology_version(self):
         """ REST to return the topology following the SDX data model"""
-
-        self.topology = get_topology(self.get_kytos_topology())
-
         return jsonify(self.topology), 200
 
-    @listen_to('kytos/topology.link_*')
+    @listen_to('kytos/topology.*')
     def handle_link_up(self, event):
-        time.sleep(1)
-        log.info("SDX: Event detected")
-        self.topology = get_topology(self.get_kytos_topology())
+        log.debug("SDX: Event detected")
+        self.create_update_topology()
+
+    def create_update_topology(self):
+        """"""
+        self.storehouse.update_box()
+        version = self.storehouse.get_data()["version"]
+        self.topology = get_topology(self.get_kytos_topology(), version)
