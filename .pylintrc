@@ -1,0 +1,27 @@
+[MASTER]
+
+disable=
+    # disabled by me,
+    bad-indentation,
+    duplicate-code,
+    too-many-statements,
+    too-many-branches,
+    import-error,
+    too-few-public-methods,
+    too-many-instance-attributes,
+    invalid-name,
+    fixme,
+    too-many-arguments,
+    useless-object-inheritance,
+    literal-comparison,
+    no-else-return,
+    len-as-condition,
+    inconsistent-return-statements,
+    too-many-public-methods,
+    anomalous-backslash-in-string,
+    too-many-return-statements,
+    protected-access,
+    unnecessary-pass,
+    relative-beyond-top-level,
+    misplaced-bare-raise,
+    too-many-nested-blocks

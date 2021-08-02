@@ -1,6 +1,10 @@
 .swp
 .pyc
 .napp
+.idea
 
 __pycache__
 .tox
+sdx-lc-client
+kytos_sdx.egg-info
+.pytest_cache

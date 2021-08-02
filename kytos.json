@@ -4,7 +4,7 @@
   "name": "sdx",
   "description": "SDX API",
   "version": "1.0",
-  "napp_dependencies": [],
+  "napp_dependencies": ["kytos/topology", "kytos/storehouse"],
   "license": "",
   "tags": [],
   "url": ""
