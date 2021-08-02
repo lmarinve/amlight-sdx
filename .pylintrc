@@ -24,4 +24,5 @@ disable=
     unnecessary-pass,
     relative-beyond-top-level,
     misplaced-bare-raise,
-    too-many-nested-blocks
+    too-many-nested-blocks,
+    attribute-defined-outside-init
