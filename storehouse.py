@@ -3,6 +3,7 @@ import threading
 
 from kytos.core import log
 from kytos.core.events import KytosEvent
+import parse_topo
 
 
 class StoreHouse:
@@ -42,7 +43,9 @@ class StoreHouse:
 
         content = {'namespace': 'kytos.sdx.storehouse.version',
                    'callback': self._create_box_callback,
-                   'data': {"version": self.counter}}
+                   'data': {"version": self.counter},
+                   'topology_name': parse_topo.get_topology_name()
+                   }
 
         event = KytosEvent(name='kytos.storehouse.create', content=content)
 
