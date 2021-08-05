@@ -36,12 +36,10 @@ class Main(KytosNApp):
         self.topology = dict()
         self.topology_name = "Amlight.net"  # parse_topo.get_topology_name()
 
-        # TODO: function that reads kytos.json, and validates that the requirements
-        #  are there and then run the functions ; counter approach: napp_loaded
-        #  variable initialize to 0 , wait, increase
-
     def napp_validation_thread(self):
-        """"""
+        """Function that as a thread, validates that all required napp shave been
+        loaded before the amlight-sdx napp, so no exceptions are triggered at run time,
+        and other errors can be avoided."""
         t = threading.Thread(target=self.napp_validation_thread())
         t.start()
         t.join()
@@ -77,13 +75,13 @@ class Main(KytosNApp):
         pass
 
     @listen_to('kytos/storehouse.loaded')
-    def load_storehouse(self, version=None):  # pylint: disable=W0613
+    def load_storehouse(self, event=None):  # pylint: disable=W0613
         """Function meant for validation, to make sure that the storehouse napp has been loaded
         before all the other functions that use it begins to call it."""
         self.storehouse = napps.amlight.sdx.storehouse.StoreHouse(self.controller)
 
     @listen_to('kytos/topology.*')
-    def load_topology(self, version=None):  # pylint: disable=W0613
+    def load_topology(self, event=None):  # pylint: disable=W0613
         """Function meant for validation, to make sure that the storehouse napp has been loaded
         before all the other functions that use it begins to call it."""
         if not self.topology_loaded:
