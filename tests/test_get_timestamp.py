@@ -20,7 +20,7 @@ class TestGetTimeStamp:
 
     def test_correct_timestamp(self):
 
-        current_timestamp = datetime.datetime.now().strftime("%m%d%y-%H%M%S")
+        current_timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
         timestamp = parse_topo.get_time_stamp()
 
         assert timestamp == current_timestamp

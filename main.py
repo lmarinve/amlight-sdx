@@ -34,7 +34,7 @@ class Main(KytosNApp):
         """
         self.topology_loaded = False
         self.topology = dict()
-        self.topology_name = "Amlight.net"  # parse_topo.get_topology_name()
+        self.oxp_url = ""
 
     def napp_validation_thread(self):
         """Function that as a thread, validates that all required napp shave been
@@ -48,7 +48,7 @@ class Main(KytosNApp):
         while time_count <= 10:
             try:
                 napps_dict = requests.get("http://127.0.0.1:8181/api/kytos/core/napps_installed/")
-                if ['kytos', 'storehouse'] and ['kytos', 'topology'] not in napps_dict['napps']:
+                if ['kytos', 'storehouse'] and ['kytos', 'topology'] not in napps_dict:
                     raise Exception
             except:  # pylint: disable=W0703
                 print("All required Napps are either NOT installed or NOT enabled")
@@ -99,7 +99,6 @@ class Main(KytosNApp):
         self.topology_loaded = False
         self.topology = {}
 
-
     @staticmethod
     def get_kytos_topology():
         """retrieve topology from API"""
@@ -107,39 +106,52 @@ class Main(KytosNApp):
                                       "topology/v3").json()
         return kytos_topology["topology"]
 
-    @rest('v1/topology_name', methods=['POST'])
-    def establish_topology_name(self):
+    @rest('v1/oxp_url', methods=['POST'])
+    def set_oxp_url(self):
         """ REST endpoint to provide the SDX napp with the domain_name
         provided by the operator"""
 
         try:
             domain_name = request.get_json()
         except Exception as err:  # pylint: disable=W0703
-            print("Error connecting to SDX /topology_name endpoint")
-            print(err)
-            sys.exit(1)
+           return jsonify(err), 400  # 405: method not allowed for requested URL
 
-        self.topology_name = domain_name
+        self.oxp_url = domain_name
 
+        return jsonify("Success"), 200
+
+    @rest('v1/oxp_name', methods=['POST'])
+    def set_oxp_name(self):
+        """ REST endpoint to provide the SDX napp with the domain_name
+        provided by the operator"""
+
+        try:
+            domain_name = request.get_json()
+        except Exception as err:  # pylint: disable=W0703
+            return jsonify(err), 400
+
+        self.oxp_name = domain_name
+
+        return jsonify("Success"), 200
 
     @rest('v1/topology')
     def get_topology_version(self):
         """ REST to return the topology following the SDX data model"""
-        # if not self.topology_name:
-        #     return jsonify("Submit topology_name previous to requesting topology schema"), 200
+        # if not self.oxp_url:
+        #     return jsonify("Submit oxp_url previous to requesting topology schema"), 200
 
-        return jsonify(self.topology), 200
+        # return jsonify(self.topology), 200
+        return jsonify(self.create_update_topology()), 200
 
-    @listen_to('.*.switch.(new|reconnected)')
-    @listen_to('.*.connection.lost')
-    @listen_to('.*.switch.interface.created')
-    def handle_link_up(self, event):
-        """Listen to topology events"""
-        log.debug("SDX: Event detected")
-        if self.topology_loaded:
-            self.create_update_topology()
-        print(event)
-        # TODO: PUT swagger client
+    # @listen_to('.*.connection.lost')
+    # @listen_to('.*.switch.interface.created')
+    # def handle_link_up(self, event):
+    #     """Listen to topology events"""
+    #     log.debug("SDX: Event detected")
+    #     if self.topology_loaded:
+    #         self.create_update_topology()
+    #     print(event)
+    #     # TODO: PUT swagger client
 
     def create_update_topology(self):
         """ Function that will take care of initializing the namespace
@@ -149,7 +161,7 @@ class Main(KytosNApp):
         if self.topology_loaded:
             self.storehouse.update_box()
             version = self.storehouse.get_data()["version"]
-            self.topology = get_topology(self.get_kytos_topology(), version, self.topology_name)
+            self.topology = get_topology(self.get_kytos_topology(), version, self.oxp_url)
         else:
             log.info(" Topology NAPP not loaded yet")
             return {}
