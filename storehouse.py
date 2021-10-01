@@ -1,9 +1,11 @@
-"""Module to handle the storehouse."""
+"""
+Module to handle the storehouse.
+"""
+
 import threading
 
 from kytos.core import log
 from kytos.core.events import KytosEvent
-import parse_topo
 
 
 class StoreHouse:
@@ -44,7 +46,7 @@ class StoreHouse:
         content = {'namespace': 'kytos.sdx.storehouse.version',
                    'callback': self._create_box_callback,
                    'data': {"version": self.counter},
-                   'topology_name': parse_topo.get_topology_name()
+                   'topology_name': 'Amlight.net'
                    }
 
         event = KytosEvent(name='kytos.storehouse.create', content=content)

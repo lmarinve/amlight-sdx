@@ -1,35 +1,36 @@
-"""This code was design to intentionally leave some validations to be performed
+"""
+This code was design to intentionally leave some validations to be performed
 by the JSON schema validator. Therefore, not every attribute will be validated
-every time."""
+every time.
+"""
 
 
 import sys
 import datetime
 import json
 import requests
-from kytos.core import log
 
 
 def get_nodes_name():
     """Function to retrieve the data_path attribute for every switch form
     Kytos's topology API"""
 
-    api_url = "http://localhost:8181/api/kytos/topology/v3/"
     new_headers = {'Content-type': 'application/json'}
+    topology_url = "http://localhost:8181/api/kytos/topology/v3/"
     try:
-        response = requests.get(api_url, headers=new_headers)
+        response = requests.get(topology_url, headers=new_headers)
     except Exception as err:  # pylint: disable=W0703
         print("Error connecting to Kytos API")
         print(err)
         sys.exit(1)
 
-    topology = json.loads(response.content.decode("utf-8"))["topology"]
+    kytos_topology = json.loads(response.content.decode("utf-8"))["topology"]
 
     nodes_mappings = {}
 
-    if isinstance(topology, dict):
-        for node in topology["switches"]:
-            nodes_mappings[node] = topology["switches"][node]["data_path"]
+    if isinstance(kytos_topology, dict):
+        for node in kytos_topology["switches"]:
+            nodes_mappings[node] = kytos_topology["switches"][node]["data_path"]
     else:
         raise Exception("topology schema is not a dictionary")
 
@@ -60,7 +61,7 @@ def get_port_speed(speed):
         return "100GE"
     elif speed == 1250000000:
         return "10GE"
-    elif speed == 40000000:  # TODO
+    elif speed == 40000000:  # TODO ; speeds not provided in O.F. 1.3 specification
         return "40GE"
     elif speed == 125000000:
         return "1GE"
@@ -104,6 +105,7 @@ def get_ports(node, interfaces, oxp_url):
         port_no = interface["port_number"]
         if port_no != 4294967294:
             ports.append(get_port(node, interface, oxp_url))
+
     return ports
 
 
@@ -133,7 +135,7 @@ def get_node(switch, oxp_url):
 
 def get_nodes(switches, oxp_url):
     """function that returns a list of Nodes objects for every node in a topology"""
-
+    print(switches)
     if switches == "":
         raise ValueError("Switches CANNOT be empty")
 
@@ -174,6 +176,8 @@ def get_links(kytos_links, oxp_url):
     """function that returns a list of Link objects based on the network's
     devices connections to each other"""
 
+    print(kytos_links)
+
     if kytos_links == "":
         raise ValueError("Kytos_links CANNOT be empty")
 
@@ -184,11 +188,13 @@ def get_links(kytos_links, oxp_url):
         if link:
             links.append(link)
 
+    print(links)
+
     return links
 
 
 def get_time_stamp():
-    """function to obtain the current time_stamp in a specific format"""
+    """Function to obtain the current time_stamp in a specific format"""
 
     return datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
@@ -221,8 +227,10 @@ def get_topology(kytos_topology, version, oxp_url):
     if kytos_topology == "":
         raise ValueError("Kytos_topology CANNOT be empty")
 
+    print(kytos_topology)
+
     topology = dict()
-    topology["name"] = "AmLight-OXP"  # TODO: to be provided by operator ; create endpoint
+    topology["name"] = "AmLight-OXP"
     topology["id"] = f"urn:sdx:topology:{oxp_url}"
     topology["version"] = version
     topology["timestamp"] = get_time_stamp()
