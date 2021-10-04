@@ -3,7 +3,7 @@ Module to handle the storehouse.
 """
 
 import threading
-
+from napps.amlight.sdx.settings import oxp_url, oxp_name
 from kytos.core import log
 from kytos.core.events import KytosEvent
 
@@ -45,7 +45,10 @@ class StoreHouse:
 
         content = {'namespace': 'kytos.sdx.storehouse.version',
                    'callback': self._create_box_callback,
-                   'data': {"version": self.counter},
+                   'data': {"version": self.counter,
+                            "oxp_name": oxp_name,
+                            "oxp_url:": oxp_url
+                            },
                    'topology_name': 'Amlight.net'
                    }
 
@@ -65,12 +68,15 @@ class StoreHouse:
 
     def update_box(self):
         """Update an existing box with a new version value after a topology change is detected."""
-        self._lock.acquire()  # Lock to avoid race condition
+        self._lock.acquire()  # Lock to avoid race condition   # pylint: disable=R1732
         log.debug(f'Lock {self._lock} acquired.')
         self.counter += 1
         content = {'namespace': self.namespace,
                    'box_id': self.box.box_id,
-                   'data': {"version": self.counter},
+                   'data': {"version": self.counter,
+                            "oxp_name": oxp_name,
+                            "oxp_url:": oxp_url
+                            },
                    'callback': self._update_box_callback}
 
         event = KytosEvent(name='kytos.storehouse.update', content=content)

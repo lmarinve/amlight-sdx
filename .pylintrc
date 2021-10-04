@@ -25,4 +25,7 @@ disable=
     relative-beyond-top-level,
     misplaced-bare-raise,
     too-many-nested-blocks,
-    attribute-defined-outside-init
+    attribute-defined-outside-init,
+    use-dict-literal,
+    use-list-literal,
+    consider-using-f-string
