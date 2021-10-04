@@ -4,6 +4,7 @@ SDX API
 """
 
 import requests
+from napps.amlight.sdx.settings import topology_url
 from flask import jsonify, request
 from kytos.core import rest
 from kytos.core import KytosNApp, log
@@ -75,8 +76,7 @@ class Main(KytosNApp):
     @staticmethod
     def get_kytos_topology():
         """retrieve topology from API"""
-        kytos_topology = requests.get("http://0.0.0.0:8181/api/kytos/"
-                                      "topology/v3").json()   # TODO: use URL from settings.py
+        kytos_topology = requests.get(topology_url).json()
         return kytos_topology["topology"]
 
     @rest('v1/oxp_url', methods=['GET'])
@@ -90,8 +90,6 @@ class Main(KytosNApp):
         provided by the operator"""
         try:
             self.oxp_url = request.get_json()
-            # TODO: oxp_url must be saved on the storehousse
-
         except Exception as err:
             log.info(err)
             return jsonify(err), 401
@@ -112,8 +110,6 @@ class Main(KytosNApp):
         provided by the operator"""
         try:
             self.oxp_name = request.get_json()
-            # TODO: oxp_url must be saved on the storehousse
-
         except Exception as err:
             log.info(err)
             return jsonify(err), 401

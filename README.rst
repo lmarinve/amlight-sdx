@@ -53,7 +53,8 @@ $ mn --topo linear,3 --controller=remote,ip=,port=6653
 
 
 Downloading the SDX Kytos Napp
-==============================
+========================
+======
 
 All of the Kytos Network Applications are located in the NApps online repository. To install the SDX NApp, run the
 following from inside the docker container::
