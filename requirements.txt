@@ -1,5 +1,4 @@
 requests
 kytos
-swagger_client
 flask
 pytest

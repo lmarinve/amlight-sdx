@@ -9,6 +9,7 @@ import sys
 import datetime
 import json
 import requests
+from kytos.core import log
 
 
 def get_nodes_name():
@@ -30,7 +31,10 @@ def get_nodes_name():
 
     if isinstance(kytos_topology, dict):
         for node in kytos_topology["switches"]:
-            nodes_mappings[node] = kytos_topology["switches"][node]["data_path"]
+            if "node_name" in kytos_topology["switches"][node]["metadata"]:
+                nodes_mappings[node] = kytos_topology["switches"][node]["metadata"]["node_name"]
+            else:
+                nodes_mappings[node] = kytos_topology["switches"][node]["data_path"]
     else:
         raise Exception("topology schema is not a dictionary")
 
@@ -118,7 +122,11 @@ def get_node(switch, oxp_url):
         raise ValueError("Switch CANNOT be empty")
 
     node = dict()
-    node["name"] = switch["data_path"]
+
+    if "node_name" in switch["metadata"]:
+        node["name"] = switch["metadata"]["node_name"]
+    else:
+        node["name"] = switch["data_path"]
     node["id"] = f"urn:sdx:node:{oxp_url}:%s" % node["name"]
     node["location"] = {"address": "", "latitude": "", "longitude": ""}
     if "address" in switch["metadata"]:
@@ -135,7 +143,7 @@ def get_node(switch, oxp_url):
 
 def get_nodes(switches, oxp_url):
     """function that returns a list of Nodes objects for every node in a topology"""
-    print(switches)
+
     if switches == "":
         raise ValueError("Switches CANNOT be empty")
 
@@ -220,17 +228,15 @@ def update_nni(nodes, links):
                         port["nni"] = nni_a
 
 
-def get_topology(kytos_topology, version, oxp_url):
+def get_topology(kytos_topology, version, oxp_name, oxp_url):
     """Main function to return the topology dictionary by calling on the other functions
     that return the name, id, nodes, time_stamp, version, domain_service, and links."""
 
     if kytos_topology == "":
         raise ValueError("Kytos_topology CANNOT be empty")
 
-    print(kytos_topology)
-
     topology = dict()
-    topology["name"] = "AmLight-OXP"
+    topology["name"] = oxp_name
     topology["id"] = f"urn:sdx:topology:{oxp_url}"
     topology["version"] = version
     topology["timestamp"] = get_time_stamp()
