@@ -72,6 +72,14 @@ class Main(KytosNApp):
         before all the other functions that use it begins to call it."""
         self.topology_loaded = False
 
+    def test_kytos_topology(self):
+        """ Test if the Topology napp has loaded """
+        try:
+            _ = self.get_kytos_topology()
+            return True
+        except:
+            return False
+
     @staticmethod
     def get_kytos_topology():
         """retrieve topology from API"""
@@ -132,7 +140,7 @@ class Main(KytosNApp):
         if not self.oxp_name:
             return jsonify("Submit oxp_name previous to requesting topology schema"), 401
 
-        if self.topology_loaded:
+        if self.topology_loaded or self.test_kytos_topology():
             return jsonify(self.create_update_topology()), 200
 
         return jsonify("Topology napp has not loaded"), 401

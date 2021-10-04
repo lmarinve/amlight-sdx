@@ -1,0 +1,32 @@
+
+1) Start 1 mininet
+
+if Mac OS X: https://github.com/lovenery/docker-mininet-macos
+
+Copy the amlight-sax-topology.py to the container
+
+2) Start 3 Kytos Docker containers
+
+cd /tmp
+
+git clone https://github.com/amlight/amlight-sdx
+
+# AmLight
+docker run -d --name amlight -p 6653:6653 -p 8181:8181 -v $(pwd)/amlight-sdx:/amlight-sdx gitlab.ampath.net:5000/amlight/kytos-prod:testing
+
+# SAX
+docker run -d --name sax -p 6654:6653 -p 8182:8181 -v $(pwd)/amlight-sdx:/amlight-sdx gitlab.ampath.net:5000/amlight/kytos-prod:testing
+
+# TENET
+docker run -d --name tenet -p 6655:6653 -p 8183:8181 -v $(pwd)/amlight-sdx:/amlight-sdx gitlab.ampath.net:5000/amlight/kytos-prod:testing
+
+INSTALL sdx napp
+
+3) Enable all ports
+
+4) Run all initialization scripts
+
+amlight_init.sh
+sax_init.sh
+tenet_init.sh
+
