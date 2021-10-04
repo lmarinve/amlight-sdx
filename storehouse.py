@@ -68,7 +68,7 @@ class StoreHouse:
 
     def update_box(self):
         """Update an existing box with a new version value after a topology change is detected."""
-        self._lock.acquire()  # Lock to avoid race condition
+        self._lock.acquire()  # Lock to avoid race condition   # pylint: disable=R1732
         log.debug(f'Lock {self._lock} acquired.')
         self.counter += 1
         content = {'namespace': self.namespace,

@@ -90,7 +90,7 @@ class Main(KytosNApp):
         provided by the operator"""
         try:
             self.oxp_url = request.get_json()
-        except Exception as err:
+        except Exception as err:  # pylint: disable=W0703
             log.info(err)
             return jsonify(err), 401
 
@@ -110,7 +110,7 @@ class Main(KytosNApp):
         provided by the operator"""
         try:
             self.oxp_name = request.get_json()
-        except Exception as err:
+        except Exception as err:  # pylint: disable=W0703
             log.info(err)
             return jsonify(err), 401
 
@@ -124,7 +124,7 @@ class Main(KytosNApp):
         """ REST to return the topology following the SDX data model"""
         if not self.oxp_url:
             return jsonify("Submit oxp_url previous to requesting topology schema"), 401
-            
+
         if not self.oxp_name:
             return jsonify("Submit oxp_name previous to requesting topology schema"), 401
 
@@ -139,7 +139,7 @@ class Main(KytosNApp):
          box object containing the version data that will be updated
          every time a change is detected in the topology."""
 
-        self.storehouse.update_box()  # TODO: upload should be changed to increment the version counter only.
+        self.storehouse.update_box()  # TODO: must be changed to increase the version counter only
         version = self.storehouse.get_data()["version"]
 
         return get_topology(self.get_kytos_topology(), version, self.oxp_name, self.oxp_url)
