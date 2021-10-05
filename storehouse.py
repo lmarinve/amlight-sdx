@@ -3,7 +3,6 @@ Module to handle the storehouse.
 """
 
 import threading
-from napps.amlight.sdx.settings import oxp_url, oxp_name
 from kytos.core import log
 from kytos.core.events import KytosEvent
 
@@ -46,17 +45,16 @@ class StoreHouse:
         content = {'namespace': 'kytos.sdx.storehouse.version',
                    'callback': self._create_box_callback,
                    'data': {"version": self.counter,
-                            "oxp_name": oxp_name,
-                            "oxp_url:": oxp_url
-                            },
-                   'topology_name': 'Amlight.net'
+                            "oxp_name": "",
+                            "oxp_url": ""
+                            }
                    }
 
         event = KytosEvent(name='kytos.storehouse.create', content=content)
 
         self.controller.buffers.app.put(event)
 
-        log.debug('Create box from storehouse')
+        log.info('Create box from storehouse')
 
     def _create_box_callback(self, _event, data, error):
         """Execute the callback to log the output of the create_box function."""
@@ -73,10 +71,7 @@ class StoreHouse:
         self.counter += 1
         content = {'namespace': self.namespace,
                    'box_id': self.box.box_id,
-                   'data': {"version": self.counter,
-                            "oxp_name": oxp_name,
-                            "oxp_url:": oxp_url
-                            },
+                   'data': {"version": self.counter},
                    'callback': self._update_box_callback}
 
         event = KytosEvent(name='kytos.storehouse.update', content=content)
@@ -129,3 +124,40 @@ class StoreHouse:
             self.get_stored_box(data[0])
         else:
             self.create_box()
+
+    def save_oxp_name(self, oxp_name):
+        """Save the OXP NAME using the storehouse."""
+        self._lock.acquire()  # Lock to avoid race condition
+        log.debug(f'Lock {self._lock} acquired.')
+        self.box.data["oxp_name"] = oxp_name
+
+        content = {'namespace': self.namespace,
+                   'box_id': self.box.box_id,
+                   'data': self.box.data,
+                   'callback': self._save_oxp_callback}
+
+        event = KytosEvent(name='kytos.storehouse.update', content=content)
+        self.controller.buffers.app.put(event)
+
+    def save_oxp_url(self, oxp_url):
+        """Save the OXP URL using the storehouse."""
+        self._lock.acquire()  # Lock to avoid race condition
+        log.debug(f'Lock {self._lock} acquired.')
+        self.box.data["oxp_url"] = oxp_url
+
+        content = {'namespace': self.namespace,
+                   'box_id': self.box.box_id,
+                   'data': self.box.data,
+                   'callback': self._save_oxp_callback}
+
+        event = KytosEvent(name='kytos.storehouse.update', content=content)
+        self.controller.buffers.app.put(event)
+
+    def _save_oxp_callback(self, _event, data, error):
+        """Display the save EVC result in the log."""
+        self._lock.release()
+        log.debug(f'Lock {self._lock} released.')
+        if error:
+            log.error(f'Can\'t update the {self.box.box_id}')
+
+        log.debug(f'Box {data.box_id} was updated.')

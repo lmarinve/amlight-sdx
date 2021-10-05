@@ -27,8 +27,6 @@ class Main(KytosNApp):
 
         So, if you have any setup routine, insert it here.
         """
-        self.oxp_url = ""  # TODO: Load from the storehouse in case it was previously added
-        self.oxp_name = ""  # TODO: Load from the storehouse in case it was previously added
         self.topology_loaded = False
         self.storehouse = None
 
@@ -40,7 +38,7 @@ class Main(KytosNApp):
 
             self.execute_as_loop(30)  # 30-second interval.
         """
-        self.load_storehouse()  # TODO: what if the Storehouse wasn't loaded yet?
+        self.load_storehouse()
 
     def shutdown(self):
         """Run when your NApp is unloaded.
@@ -49,10 +47,39 @@ class Main(KytosNApp):
         """
         pass
 
+    @property
+    def oxp_url(self):
+        """ Property for OXP_URL """
+        try:
+            self.load_storehouse()
+            return self.storehouse.get_data()["oxp_url"]
+        except:
+            return ""
+
+    @oxp_url.setter
+    def oxp_url(self, oxp_url):
+        """ Property for OXP_URL """
+        self.storehouse.save_oxp_url(oxp_url)
+
+    @property
+    def oxp_name(self):
+        """ Property for OXP_NAME """
+        try:
+            self.load_storehouse()
+            return self.storehouse.get_data()["oxp_name"]
+        except:
+            return ""
+
+    @oxp_name.setter
+    def oxp_name(self, oxp_name):
+        """ Property for OXP_URL """
+        self.storehouse.save_oxp_name(oxp_name)
+
     @listen_to('kytos/storehouse.loaded')
     def load_storehouse(self, event=None):  # pylint: disable=W0613
         """Function meant for validation, to make sure that the storehouse napp has been loaded
         before all the other functions that use it begins to call it."""
+        log.info("Loading Storehouse")
         self.storehouse = napps.amlight.sdx.storehouse.StoreHouse(self.controller)
 
     @listen_to('kytos/topology.*')
@@ -94,10 +121,10 @@ class Main(KytosNApp):
 
     @rest('v1/oxp_url', methods=['POST'])
     def set_oxp_url(self):
-        """ REST endpoint to provide the SDX napp with the domain_name
-        provided by the operator"""
+        """ REST endpoint to provide the SDX napp with the url provided by the operator"""
         try:
             self.oxp_url = request.get_json()
+
         except Exception as err:  # pylint: disable=W0703
             log.info(err)
             return jsonify(err), 401
@@ -114,10 +141,10 @@ class Main(KytosNApp):
 
     @rest('v1/oxp_name', methods=['POST'])
     def set_oxp_name(self):
-        """ REST endpoint to provide the SDX napp with the domain_name
-        provided by the operator"""
+        """ REST endpoint to provide the SDX napp with the domain_name provided by the operator"""
         try:
             self.oxp_name = request.get_json()
+
         except Exception as err:  # pylint: disable=W0703
             log.info(err)
             return jsonify(err), 401
@@ -137,7 +164,11 @@ class Main(KytosNApp):
             return jsonify("Submit oxp_name previous to requesting topology schema"), 401
 
         if self.topology_loaded or self.test_kytos_topology():
-            return jsonify(self.create_update_topology()), 200
+            try:
+                return jsonify(self.create_update_topology()), 200
+            except Exception as err:
+                log.info(err)
+                return jsonify("Error in the Storehouse"), 400
 
         return jsonify("Topology napp has not loaded"), 401
 
@@ -147,7 +178,6 @@ class Main(KytosNApp):
          box object containing the version data that will be updated
          every time a change is detected in the topology."""
 
-        self.storehouse.update_box()  # TODO: must be changed to increase the version counter only
+        self.storehouse.update_box()
         version = self.storehouse.get_data()["version"]
-
         return get_topology(self.get_kytos_topology(), version, self.oxp_name, self.oxp_url)

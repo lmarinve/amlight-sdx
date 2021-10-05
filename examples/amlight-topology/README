@@ -21,10 +21,11 @@ docker run -d --name sax -p 6654:6653 -p 8182:8181 -v $(pwd)/amlight-sdx:/amligh
 docker run -d --name tenet -p 6655:6653 -p 8183:8181 -v $(pwd)/amlight-sdx:/amlight-sdx gitlab.ampath.net:5000/amlight/kytos-prod:testing
 
 INSTALL sdx napp
+docker exec -it tenet bash
+cd /amlight-sdx
+python3 setup.py develop
 
-3) Enable all ports
-
-4) Run all initialization scripts
+3) Run all initialization scripts
 
 amlight_init.sh
 sax_init.sh

@@ -9,7 +9,6 @@ import sys
 import datetime
 import json
 import requests
-from kytos.core import log
 
 
 def get_nodes_name():
@@ -150,8 +149,9 @@ def get_nodes(switches, oxp_url):
     nodes = list()
 
     for switch in switches.values():
-        node = get_node(switch, oxp_url)
-        nodes.append(node)
+        if switch["enabled"]:
+            node = get_node(switch, oxp_url)
+            nodes.append(node)
 
     return nodes
 
@@ -184,19 +184,16 @@ def get_links(kytos_links, oxp_url):
     """function that returns a list of Link objects based on the network's
     devices connections to each other"""
 
-    print(kytos_links)
-
     if kytos_links == "":
         raise ValueError("Kytos_links CANNOT be empty")
 
     links = list()
 
     for kytos_link in kytos_links.values():
-        link = get_link(kytos_link, oxp_url)
-        if link:
-            links.append(link)
-
-    print(links)
+        if kytos_link["enabled"]:
+            link = get_link(kytos_link, oxp_url)
+            if link:
+                links.append(link)
 
     return links
 
