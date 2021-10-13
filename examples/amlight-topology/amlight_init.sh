@@ -161,3 +161,22 @@ curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API
 # AmLight inter-domain port
 curl -H 'Content-Type: application/json' -X POST -d'{"nni": "urn:sdx:port:sax.net:Sax01:40"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:40/metadata
 curl -H 'Content-Type: application/json' -X POST -d'{"nni": "urn:sdx:port:sax.net:Sax02:41"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:41/metadata
+
+# Enable links
+sleep 3
+set -x
+for LINK in $(curl -sH 'Content-Type: application/json'  $TOPOLOGY_API/links | python -m json.tool | fgrep "\"link\":" | sed 's/[ |,|"]//g'|cut -d":" -f2 | uniq);
+  do
+    curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/links/$LINK/enable;
+
+    echo '{"packet_loss": 0.00random}' |  sed "s/random/${RANDOM:0:10}/" > /tmp/random.json;
+    curl -H 'Content-Type: application/json' -X POST -d@/tmp/random.json $TOPOLOGY_API/links/$LINK/metadata;
+
+    curl -H 'Content-Type: application/json' -X POST -d'{"availability": 99.5}' $TOPOLOGY_API/links/$LINK/metadata;
+
+    echo '{"residual_bandwidth": random}' |  sed "s/random/${RANDOM:0:2}/" > /tmp/random.json;
+    curl -H 'Content-Type: application/json' -X POST -d@/tmp/random.json $TOPOLOGY_API/links/$LINK/metadata;
+
+    echo '{"latency": random}' |  sed "s/random/${RANDOM:0:2}/" > /tmp/random.json;
+    curl -H 'Content-Type: application/json' -X POST -d@/tmp/random.json $TOPOLOGY_API/links/$LINK/metadata;
+  done

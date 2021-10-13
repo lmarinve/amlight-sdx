@@ -9,6 +9,7 @@ import sys
 import datetime
 import json
 import requests
+import settings
 
 
 def get_nodes_name():
@@ -176,6 +177,19 @@ def get_link(kytos_link, oxp_url):
     link["id"] = f"urn:sdx:link:{oxp_url}:%s" % link["name"]
     link["ports"] = [get_port_urn(switch_a, interface_a, oxp_url),
                      get_port_urn(switch_b, interface_b, oxp_url)]
+
+    link["type"] = "intra"
+
+    for item in ["bandwidth", "residual_bandwidth", "latency", "packet_loss", "availability"]:
+        if item in kytos_link["metadata"]:
+            link[item] = kytos_link["metadata"][item]
+        else:
+            if item in ["bandwidth"]:
+                link[item] = get_port_speed(kytos_link["endpoint_a"]["speed"])
+            elif item in ["residual_bandwidth", "availability"]:
+                link[item] = 100
+            else:
+                link[item] = 0
 
     return link
 

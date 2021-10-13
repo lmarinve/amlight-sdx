@@ -7,6 +7,7 @@ git clone https://github.com/amlight/amlight-sdx.git /tmp/amlight-sdx
 2) Start 3 Kytos Docker containers
 
 # AmLight
+
 docker run -d --name amlight -p 6653:6653 -p 8181:8181 -v /tmp/amlight-sdx:/amlight-sdx gitlab.ampath.net:5000/amlight/kytos-prod:testing
 docker exec -it -w /amlight-sdx amlight  python3 setup.py develop
 
