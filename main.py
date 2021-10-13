@@ -10,7 +10,7 @@ from kytos.core import rest
 from kytos.core import KytosNApp, log
 from kytos.core.helpers import listen_to
 import napps.amlight.sdx.storehouse
-from napps.amlight.sdx.parse_topo import get_topology
+from napps.amlight.sdx.topology_class import ParseTopology
 
 
 class Main(KytosNApp):
@@ -180,4 +180,8 @@ class Main(KytosNApp):
 
         self.storehouse.update_box()
         version = self.storehouse.get_data()["version"]
-        return get_topology(self.get_kytos_topology(), version, self.oxp_name, self.oxp_url)
+        return ParseTopology(topology=self.get_kytos_topology(),
+                             version=version,
+                             model_version="1.0.0",
+                             oxp_name=self.oxp_name,
+                             oxp_url=self.oxp_url).get_sdx_topology()

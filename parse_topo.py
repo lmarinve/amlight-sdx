@@ -9,39 +9,31 @@ import sys
 import datetime
 import json
 import requests
-import settings
+from random import randint
 
 
-def get_nodes_name():
-    """Function to retrieve the data_path attribute for every switch form
-    Kytos's topology API"""
+def get_nodes_name(kytos_topology):
+    """Function to retrieve the data_path attribute for every switch form Kytos's topology API"""
+    #
+new_headers = {'Content-type': 'application/json'}
+topology_url = "http://0.0.0.0:8181/api/kytos/topology/v3"
 
-    new_headers = {'Content-type': 'application/json'}
-    topology_url = "http://localhost:8181/api/kytos/topology/v3/"
-    try:
-        response = requests.get(topology_url, headers=new_headers)
-    except Exception as err:  # pylint: disable=W0703
-        print("Error connecting to Kytos API")
-        print(err)
-        sys.exit(1)
+response = requests.get(topology_url, headers=new_headers)
 
-    kytos_topology = json.loads(response.content.decode("utf-8"))["topology"]
+kytos_topology = json.loads(response.content.decode("utf-8"))["topology"]
 
     nodes_mappings = {}
 
-    if isinstance(kytos_topology, dict):
-        for node in kytos_topology["switches"]:
-            if "node_name" in kytos_topology["switches"][node]["metadata"]:
-                nodes_mappings[node] = kytos_topology["switches"][node]["metadata"]["node_name"]
-            else:
-                nodes_mappings[node] = kytos_topology["switches"][node]["data_path"]
-    else:
-        raise Exception("topology schema is not a dictionary")
+    for node in kytos_topology["switches"].values():
+        if "node_name" in node["metadata"]:
+            nodes_mappings[node] = node["metadata"]["node_name"]
+        else:
+            nodes_mappings[node] = node["data_path"]
 
     return nodes_mappings
 
 
-def get_port_urn(switch, interface, oxp_url):
+def get_port_urn(topology, switch, interface, oxp_url):
     """function to generate the full urn address for a node"""
 
     if not isinstance(interface, str) and not isinstance(interface, int):
@@ -52,7 +44,7 @@ def get_port_urn(switch, interface, oxp_url):
         raise ValueError("Interface cannot be negative")
 
     try:
-        switch_name = get_nodes_name()[switch]
+        switch_name = get_nodes_name(topology)[switch]
     except KeyError:
         switch_name = switch
 
@@ -88,7 +80,6 @@ def get_port(node, interface, oxp_url):
     port["state"] = "enabled" if interface["enabled"] else "disabled"
     port["services"] = "l2vpn"
     port["nni"] = "False"
-    # TODO: add support for maintenance under state
 
     if "nni" in interface["metadata"]:
         port["nni"] = interface["metadata"]["nni"]
@@ -113,7 +104,7 @@ def get_ports(node, interfaces, oxp_url):
     return ports
 
 
-def get_node(switch, oxp_url):
+def get_node(topology, switch, oxp_url):
     """function that builds every Node dictionary object with all the necessary
     attributes that make a Node object; the name, id, location and list of
     ports."""
@@ -141,23 +132,23 @@ def get_node(switch, oxp_url):
     return node
 
 
-def get_nodes(switches, oxp_url):
+def get_nodes(topology, oxp_url):
     """function that returns a list of Nodes objects for every node in a topology"""
 
-    if switches == "":
+    if topology["switches"] == "":
         raise ValueError("Switches CANNOT be empty")
 
     nodes = list()
 
-    for switch in switches.values():
+    for switch in topology["switches"].values():
         if switch["enabled"]:
-            node = get_node(switch, oxp_url)
+            node = get_node(topology, switch, oxp_url)
             nodes.append(node)
 
     return nodes
 
 
-def get_link(kytos_link, oxp_url):
+def get_link(topology, kytos_link, oxp_url):
     """function that generates a dictionary object for every link in a network,
     and containing all the attributes for each link"""
 
@@ -172,8 +163,8 @@ def get_link(kytos_link, oxp_url):
     if switch_a == switch_b:
         return link
 
-    link["name"] = "%s/%s_%s/%s" % (get_nodes_name()[switch_a], interface_a,
-                                    get_nodes_name()[switch_b], interface_b)
+    link["name"] = "%s/%s_%s/%s" % (get_nodes_name(topology)[switch_a], interface_a,
+                                    get_nodes_name(topology)[switch_b], interface_b)
     link["id"] = f"urn:sdx:link:{oxp_url}:%s" % link["name"]
     link["ports"] = [get_port_urn(switch_a, interface_a, oxp_url),
                      get_port_urn(switch_b, interface_b, oxp_url)]
@@ -190,6 +181,9 @@ def get_link(kytos_link, oxp_url):
                 link[item] = 100
             else:
                 link[item] = 0
+
+    link["status"] = "up" if kytos_link["endpoint_a"]["active"] else "down"
+    link["state"] = "enabled" if kytos_link["endpoint_a"]["enabled"] else "disabled"
 
     return link
 
@@ -212,10 +206,7 @@ def get_links(kytos_links, oxp_url):
     return links
 
 
-def get_time_stamp():
-    """Function to obtain the current time_stamp in a specific format"""
 
-    return datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 
 def update_nni(nodes, links):
@@ -239,6 +230,45 @@ def update_nni(nodes, links):
                         port["nni"] = nni_a
 
 
+def create_inter_oxp_link_entries(oxp_url, nodes, links):
+    """ Create entries for inter-oxp links """
+    for node in nodes.values():
+        for interface in node["interfaces"].values():
+            if "nni" in interface["metadata"]:
+                if oxp_url not in interface["metadata"]["nni"]:
+                    # inter-domain
+
+                    link = dict()
+
+                    if "link_name" in interface["metadata"]:
+                        link["name"] = interface["metadata"]["link_name"]
+                    else:
+                        link["name"] = "NO_NAME_%s" % randint(0, 100000)
+
+                    link["id"] = f"urn:sdx:link:{oxp_url}:{link['name']}"
+
+                    if "node_name" in node["metadata"]:
+                        node["name"] = node["metadata"]["node_name"]
+                    else:
+                        node["name"] = node["data_path"]
+
+                    port_id = get_port_urn(node, interface["port_number"], oxp_url)
+
+                    link["ports"] = [port_id, interface["metadata"]["nni"]]
+
+                    link["type"] = "inter"
+                    link["bandwidth"] = get_port_speed(interface["speed"])
+                    link["status"] = "up" if interface["active"] else "down"
+                    link["state"] = "enabled" if interface["enabled"] else "disabled"
+
+                    link["availability"] = 100
+                    link["residual_bandwidth"] = 100
+                    link["packet_loss"] = 0
+                    link["latency"] = 0
+                    links.append(link)
+                    del link
+
+
 def get_topology(kytos_topology, version, oxp_name, oxp_url):
     """Main function to return the topology dictionary by calling on the other functions
     that return the name, id, nodes, time_stamp, version, domain_service, and links."""
@@ -252,9 +282,11 @@ def get_topology(kytos_topology, version, oxp_name, oxp_url):
     topology["version"] = version
     topology["timestamp"] = get_time_stamp()
     topology["model_version"] = "1.0.0"
-    topology["nodes"] = get_nodes(kytos_topology["switches"], oxp_url)
-    topology["links"] = get_links(kytos_topology["links"], oxp_url)
+    topology["nodes"] = get_nodes(kytos_topology, kytos_topology["switches"], oxp_url)
+    topology["links"] = get_links(kytos_topology, kytos_topology["links"], oxp_url)
 
     update_nni(topology["nodes"], topology["links"])
+
+    create_inter_oxp_link_entries(oxp_url, topology["nodes"], topology["links"])
 
     return topology
