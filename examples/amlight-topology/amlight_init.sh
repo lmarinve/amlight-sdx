@@ -20,13 +20,13 @@ curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:11/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:40/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:50/enable
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:1/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:2/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:3/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:9/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:11/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:40/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:50/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth1"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:1/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth2"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:2/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth3"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:3/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth9"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:9/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth11"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:11/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth40"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:40/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth50"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:50/metadata
 
 # Ampath2
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/switches/aa:00:00:00:00:00:00:12/enable
@@ -38,12 +38,12 @@ curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:10/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:12/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:51/enable
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:1/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:4/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:8/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:10/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:12/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:51/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth1"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:1/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth4"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:4/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth8"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:8/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth10"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:10/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth12"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:12/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth51"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:12:51/metadata
 
 # SouthernLight2
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/switches/aa:00:00:00:00:00:00:13/enable
@@ -55,12 +55,12 @@ curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:17/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:41/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:52/enable
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:2/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:3/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:5/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:17/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:41/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:52/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth2"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:2/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth3"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:3/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth5"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:5/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth17"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:17/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth41"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:41/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth52"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:13:52/metadata
 
 # SanJuan
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/switches/aa:00:00:00:00:00:00:14/enable
@@ -69,9 +69,9 @@ curl -H 'Content-Type: application/json' -X POST -d'{"address": "Hub787, San Jua
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:14:7/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:14:8/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:14:53/enable
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:14:7/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:14:8/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:14:53/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth7"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:14:7/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth8"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:14:8/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth53"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:14:53/metadata
 
 # AndesLight2
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/switches/aa:00:00:00:00:00:00:15/enable
@@ -81,10 +81,10 @@ curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:15:6/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:15:7/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:15:54/enable
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:15:4/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:15:6/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:15:7/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:15:54/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth4"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:15:4/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth6"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:15:6/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth7"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:15:7/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth54"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:15:54/metadata
 
 # AndesLight3
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/switches/aa:00:00:00:00:00:00:16/enable
@@ -93,9 +93,9 @@ curl -H 'Content-Type: application/json' -X POST -d'{"address": "CenturyLink, Sa
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:16:5/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:16:6/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:16:55/enable
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:16:5/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:16:6/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:16:55/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth5"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:16:5/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth6"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:16:6/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth55"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:16:55/metadata
 
 # Ampath3
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/switches/aa:00:00:00:00:00:00:17/enable
@@ -104,9 +104,9 @@ curl -H 'Content-Type: application/json' -X POST -d'{"address": "Equinix MI1, Mi
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:17:9/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:17:10/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:17:56/enable
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:17:9/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:17:10/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:17:56/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth9"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:17:9/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth10"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:17:10/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth56"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:17:56/metadata
 
 # Ampath4
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/switches/aa:00:00:00:00:00:00:18/enable
@@ -117,11 +117,11 @@ curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:18:14/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:18:16/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:18:57/enable
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:18:11/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:18:13/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:18:14/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:18:16/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:18:57/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth11"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:18:11/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth13"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:18:13/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth14"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:18:14/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth16"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:18:16/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth57"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:18:57/metadata
 
 # Ampath5
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/switches/aa:00:00:00:00:00:00:19/enable
@@ -131,10 +131,10 @@ curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:19:13/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:19:15/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:19:58/enable
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:19:12/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:19:13/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:19:15/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:19:58/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth12"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:19:12/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth13"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:19:13/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth15"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:19:15/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth58"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:19:58/metadata
 
 # Ampath7
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/switches/aa:00:00:00:00:00:00:20/enable
@@ -143,9 +143,9 @@ curl -H 'Content-Type: application/json' -X POST -d'{"address": "Equinix MI1, Mi
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:20:16/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:20:17/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:20:59/enable
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:20:16/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:20:17/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:20:59/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth16"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:20:16/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth17"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:20:17/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth59"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:20:59/metadata
 
 # JAX1
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/switches/aa:00:00:00:00:00:00:21/enable
@@ -154,9 +154,9 @@ curl -H 'Content-Type: application/json' -X POST -d'{"address": "CenturyLink, Ja
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:21:14/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:21:15/enable
 curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:21:60/enable
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:21:14/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:21:15/metadata
-curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:21:60/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth14"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:21:14/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth15"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:21:15/metadata
+curl -H 'Content-Type: application/json' -X POST -d'{"mtu": 9000, "port_name": "eth60"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:21:60/metadata
 
 # AmLight inter-domain port
 curl -H 'Content-Type: application/json' -X POST -d'{"nni": "urn:sdx:port:sax.net:Sax01:40"}' $TOPOLOGY_API/interfaces/aa:00:00:00:00:00:00:11:40/metadata
@@ -170,6 +170,9 @@ sleep 3
 for LINK in $(curl -sH 'Content-Type: application/json'  $TOPOLOGY_API/links | python -m json.tool | fgrep "\"link\":" | sed 's/[ |,|"]//g'|cut -d":" -f2 | uniq);
   do
     curl -H 'Content-Type: application/json' -X POST $TOPOLOGY_API/links/$LINK/enable;
+
+    echo '{"link_name": "Link_random"}' |  sed "s/random/${LINK:0:18}/" > /tmp/random.json;
+    curl -H 'Content-Type: application/json' -X POST -d@/tmp/random.json $TOPOLOGY_API/links/$LINK/metadata;
 
     echo '{"packet_loss": 0.00random}' |  sed "s/random/${RANDOM:0:10}/" > /tmp/random.json;
     curl -H 'Content-Type: application/json' -X POST -d@/tmp/random.json $TOPOLOGY_API/links/$LINK/metadata;
