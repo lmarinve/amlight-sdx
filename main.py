@@ -1,4 +1,5 @@
-"""Main module of amlight/sdx Kytos Network Application.
+"""
+Main module of amlight/sdx Kytos Network Application.
 
 SDX API
 """

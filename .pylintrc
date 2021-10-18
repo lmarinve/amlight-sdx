@@ -28,4 +28,6 @@ disable=
     attribute-defined-outside-init,
     use-dict-literal,
     use-list-literal,
+    multiple-statements,
+    broad-except,
     consider-using-f-string
