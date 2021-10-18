@@ -1,0 +1,207 @@
+{
+    "id": "urn:sdx:topology:tenet.net.ac",
+    "links": [
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:tenet.net.ac:tenet_sw3/99_tenet_sw1/99",
+            "latency": 13,
+            "name": "tenet_sw3/99_tenet_sw1/99",
+            "packet_loss": 0.004338,
+            "ports": [
+                "urn:sdx:port:tenet.net.ac:tenet_sw3:99",
+                "urn:sdx:port:tenet.net.ac:tenet_sw1:99"
+            ],
+            "residual_bandwidth": 14,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:tenet.net.ac:tenet_sw2/20_tenet_sw1/20",
+            "latency": 17,
+            "name": "tenet_sw2/20_tenet_sw1/20",
+            "packet_loss": 0.0031688,
+            "ports": [
+                "urn:sdx:port:tenet.net.ac:tenet_sw2:20",
+                "urn:sdx:port:tenet.net.ac:tenet_sw1:20"
+            ],
+            "residual_bandwidth": 87,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 100,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:tenet.net.ac:NO_NAME_47758",
+            "latency": 0,
+            "name": "NO_NAME_47758",
+            "packet_loss": 0,
+            "ports": [
+                "urn:sdx:port:tenet.net.ac:tenet_sw1:42",
+                "urn:sdx:port:sax.rnp.br:sax_sw1:42"
+            ],
+            "residual_bandwidth": 100,
+            "state": "enabled",
+            "status": "up",
+            "type": "inter"
+        },
+        {
+            "availability": 100,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:tenet.net.ac:NO_NAME_46622",
+            "latency": 0,
+            "name": "NO_NAME_46622",
+            "packet_loss": 0,
+            "ports": [
+                "urn:sdx:port:tenet.net.ac:tenet_sw2:43",
+                "urn:sdx:port:sax.rnp.br:sax_sw2:43"
+            ],
+            "residual_bandwidth": 100,
+            "state": "enabled",
+            "status": "up",
+            "type": "inter"
+        }
+    ],
+    "model_version": "1.0.0",
+    "name": "TENET",
+    "nodes": [
+        {
+            "id": "urn:sdx:node:tenet.net.ac:tenet_sw1",
+            "location": {
+                "address": "Cape Town, South Africa",
+                "latitude": "0.0",
+                "longitude": "-30.0"
+            },
+            "name": "tenet_sw1",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:tenet.net.ac:tenet_sw1:20",
+                    "mtu": 9000,
+                    "name": "Tenet01-eth20",
+                    "nni": "False",
+                    "node": "urn:sdx:node:tenet.net.ac:tenet_sw1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:tenet.net.ac:tenet_sw1:42",
+                    "mtu": 1500,
+                    "name": "Tenet01-eth42",
+                    "nni": "urn:sdx:port:sax.rnp.br:sax_sw1:42",
+                    "node": "urn:sdx:node:tenet.net.ac:tenet_sw1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:tenet.net.ac:tenet_sw1:61",
+                    "mtu": 9000,
+                    "name": "Tenet01-eth61",
+                    "nni": "False",
+                    "node": "urn:sdx:node:tenet.net.ac:tenet_sw1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:tenet.net.ac:tenet_sw1:99",
+                    "mtu": 9000,
+                    "name": "Tenet01-eth99",
+                    "nni": "False",
+                    "node": "urn:sdx:node:tenet.net.ac:tenet_sw1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        },
+        {
+            "id": "urn:sdx:node:tenet.net.ac:tenet_sw2",
+            "location": {
+                "address": "Cape Town, South Africa",
+                "latitude": "0.0",
+                "longitude": "-20.0"
+            },
+            "name": "tenet_sw2",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:tenet.net.ac:tenet_sw2:20",
+                    "mtu": 9000,
+                    "name": "Tenet02-eth20",
+                    "nni": "False",
+                    "node": "urn:sdx:node:tenet.net.ac:tenet_sw2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:tenet.net.ac:tenet_sw2:43",
+                    "mtu": 1500,
+                    "name": "Tenet02-eth43",
+                    "nni": "urn:sdx:port:sax.rnp.br:sax_sw2:43",
+                    "node": "urn:sdx:node:tenet.net.ac:tenet_sw2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:tenet.net.ac:tenet_sw2:62",
+                    "mtu": 9000,
+                    "name": "Tenet02-eth62",
+                    "nni": "False",
+                    "node": "urn:sdx:node:tenet.net.ac:tenet_sw2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        },
+        {
+            "id": "urn:sdx:node:tenet.net.ac:tenet_sw3",
+            "location": {
+                "address": "Cape Town, South Africa",
+                "latitude": "0.0",
+                "longitude": "-10.0"
+            },
+            "name": "tenet_sw3",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:tenet.net.ac:tenet_sw3:63",
+                    "mtu": 9000,
+                    "name": "Tenet03-eth63",
+                    "nni": "False",
+                    "node": "urn:sdx:node:tenet.net.ac:tenet_sw3",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:tenet.net.ac:tenet_sw3:99",
+                    "mtu": 9000,
+                    "name": "Tenet03-eth99",
+                    "nni": "False",
+                    "node": "urn:sdx:node:tenet.net.ac:tenet_sw3",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        }
+    ],
+    "timestamp": "20211015-205259",
+    "version": 1
+}

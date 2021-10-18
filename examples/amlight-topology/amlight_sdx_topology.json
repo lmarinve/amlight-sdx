@@ -1,0 +1,953 @@
+{
+    "id": "urn:sdx:topology:amlight.net",
+    "links": [
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:Ampath4/11_Ampath1/11",
+            "latency": 29,
+            "name": "Ampath4/11_Ampath1/11",
+            "packet_loss": 0.0026083,
+            "ports": [
+                "urn:sdx:port:amlight.net:Ampath4:11",
+                "urn:sdx:port:amlight.net:Ampath1:11"
+            ],
+            "residual_bandwidth": 11,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:Ampath7/16_Ampath4/16",
+            "latency": 33,
+            "name": "Ampath7/16_Ampath4/16",
+            "packet_loss": 0.0016513,
+            "ports": [
+                "urn:sdx:port:amlight.net:Ampath7:16",
+                "urn:sdx:port:amlight.net:Ampath4:16"
+            ],
+            "residual_bandwidth": 18,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:AndesLight2/4_Ampath2/4",
+            "latency": 96,
+            "name": "AndesLight2/4_Ampath2/4",
+            "packet_loss": 0.0022874,
+            "ports": [
+                "urn:sdx:port:amlight.net:AndesLight2:4",
+                "urn:sdx:port:amlight.net:Ampath2:4"
+            ],
+            "residual_bandwidth": 24,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:Ampath5/12_Ampath2/12",
+            "latency": 16,
+            "name": "Ampath5/12_Ampath2/12",
+            "packet_loss": 0.0029234,
+            "ports": [
+                "urn:sdx:port:amlight.net:Ampath5:12",
+                "urn:sdx:port:amlight.net:Ampath2:12"
+            ],
+            "residual_bandwidth": 31,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:Ampath5/13_Ampath4/13",
+            "latency": 22,
+            "name": "Ampath5/13_Ampath4/13",
+            "packet_loss": 0.002826,
+            "ports": [
+                "urn:sdx:port:amlight.net:Ampath5:13",
+                "urn:sdx:port:amlight.net:Ampath4:13"
+            ],
+            "residual_bandwidth": 46,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:AndesLight2/7_SanJuan/7",
+            "latency": 28,
+            "name": "AndesLight2/7_SanJuan/7",
+            "packet_loss": 0.009186,
+            "ports": [
+                "urn:sdx:port:amlight.net:AndesLight2:7",
+                "urn:sdx:port:amlight.net:SanJuan:7"
+            ],
+            "residual_bandwidth": 11,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:SanJuan/8_Ampath2/8",
+            "latency": 23,
+            "name": "SanJuan/8_Ampath2/8",
+            "packet_loss": 0.0015547,
+            "ports": [
+                "urn:sdx:port:amlight.net:SanJuan:8",
+                "urn:sdx:port:amlight.net:Ampath2:8"
+            ],
+            "residual_bandwidth": 17,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:SoL2/5_AndesLight3/5",
+            "latency": 87,
+            "name": "SoL2/5_AndesLight3/5",
+            "packet_loss": 0.0021907,
+            "ports": [
+                "urn:sdx:port:amlight.net:SoL2:5",
+                "urn:sdx:port:amlight.net:AndesLight3:5"
+            ],
+            "residual_bandwidth": 23,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:Ampath2/1_Ampath1/1",
+            "latency": 31,
+            "name": "Ampath2/1_Ampath1/1",
+            "packet_loss": 0.0012338,
+            "ports": [
+                "urn:sdx:port:amlight.net:Ampath2:1",
+                "urn:sdx:port:amlight.net:Ampath1:1"
+            ],
+            "residual_bandwidth": 14,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:JAX1/15_Ampath5/15",
+            "latency": 54,
+            "name": "JAX1/15_Ampath5/15",
+            "packet_loss": 0.0018698,
+            "ports": [
+                "urn:sdx:port:amlight.net:JAX1:15",
+                "urn:sdx:port:amlight.net:Ampath5:15"
+            ],
+            "residual_bandwidth": 20,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:SoL2/17_Ampath7/17",
+            "latency": 11,
+            "name": "SoL2/17_Ampath7/17",
+            "packet_loss": 0.0025058,
+            "ports": [
+                "urn:sdx:port:amlight.net:SoL2:17",
+                "urn:sdx:port:amlight.net:Ampath7:17"
+            ],
+            "residual_bandwidth": 26,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:Ampath2/10_Ampath3/10",
+            "latency": 18,
+            "name": "Ampath2/10_Ampath3/10",
+            "packet_loss": 0.0031418,
+            "ports": [
+                "urn:sdx:port:amlight.net:Ampath2:10",
+                "urn:sdx:port:amlight.net:Ampath3:10"
+            ],
+            "residual_bandwidth": 46,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:Ampath3/9_Ampath1/9",
+            "latency": 24,
+            "name": "Ampath3/9_Ampath1/9",
+            "packet_loss": 0.005011,
+            "ports": [
+                "urn:sdx:port:amlight.net:Ampath3:9",
+                "urn:sdx:port:amlight.net:Ampath1:9"
+            ],
+            "residual_bandwidth": 68,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:JAX1/14_Ampath4/14",
+            "latency": 15,
+            "name": "JAX1/14_Ampath4/14",
+            "packet_loss": 0.0028209,
+            "ports": [
+                "urn:sdx:port:amlight.net:JAX1:14",
+                "urn:sdx:port:amlight.net:Ampath4:14"
+            ],
+            "residual_bandwidth": 30,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:SoL2/3_Ampath1/3",
+            "latency": 21,
+            "name": "SoL2/3_Ampath1/3",
+            "packet_loss": 0.001802,
+            "ports": [
+                "urn:sdx:port:amlight.net:SoL2:3",
+                "urn:sdx:port:amlight.net:Ampath1:3"
+            ],
+            "residual_bandwidth": 36,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:SoL2/2_Ampath1/2",
+            "latency": 27,
+            "name": "SoL2/2_Ampath1/2",
+            "packet_loss": 0.008162,
+            "ports": [
+                "urn:sdx:port:amlight.net:SoL2:2",
+                "urn:sdx:port:amlight.net:Ampath1:2"
+            ],
+            "residual_bandwidth": 99,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:AndesLight2/6_AndesLight3/6",
+            "latency": 13,
+            "name": "AndesLight2/6_AndesLight3/6",
+            "packet_loss": 0.0014522,
+            "ports": [
+                "urn:sdx:port:amlight.net:AndesLight2:6",
+                "urn:sdx:port:amlight.net:AndesLight3:6"
+            ],
+            "residual_bandwidth": 16,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 100,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:Link_SAX_1",
+            "latency": 0,
+            "name": "Link_SAX_1",
+            "packet_loss": 0,
+            "ports": [
+                "urn:sdx:port:amlight.net:Ampath1:40",
+                "urn:sdx:port:sax.net:Sax01:40"
+            ],
+            "residual_bandwidth": 100,
+            "state": "enabled",
+            "status": "up",
+            "type": "inter"
+        },
+        {
+            "availability": 100,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:amlight.net:Link_SAX_2",
+            "latency": 0,
+            "name": "Link_SAX_2",
+            "packet_loss": 0,
+            "ports": [
+                "urn:sdx:port:amlight.net:SoL2:41",
+                "urn:sdx:port:sax.net:Sax02:41"
+            ],
+            "residual_bandwidth": 100,
+            "state": "enabled",
+            "status": "up",
+            "type": "inter"
+        }
+    ],
+    "model_version": "1.0.0",
+    "name": "AmLight",
+    "nodes": [
+        {
+            "id": "urn:sdx:node:amlight.net:Ampath1",
+            "location": {
+                "address": "Equinix MI1, Miami, FL",
+                "latitude": "0.0",
+                "longitude": "-30.0"
+            },
+            "name": "Ampath1",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath1:1",
+                    "mtu": 9000,
+                    "name": "Ampath1-eth1",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath1:11",
+                    "mtu": 9000,
+                    "name": "Ampath1-eth11",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath1:2",
+                    "mtu": 9000,
+                    "name": "Ampath1-eth2",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath1:3",
+                    "mtu": 9000,
+                    "name": "Ampath1-eth3",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath1:40",
+                    "mtu": 9000,
+                    "name": "Ampath1-eth40",
+                    "nni": "urn:sdx:port:sax.net:Sax01:40",
+                    "node": "urn:sdx:node:amlight.net:Ampath1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath1:50",
+                    "mtu": 9000,
+                    "name": "Ampath1-eth50",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath1:9",
+                    "mtu": 9000,
+                    "name": "Ampath1-eth9",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        },
+        {
+            "id": "urn:sdx:node:amlight.net:Ampath2",
+            "location": {
+                "address": "Equinix MI1, Miami, FL",
+                "latitude": "0.0",
+                "longitude": "-20.0"
+            },
+            "name": "Ampath2",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath2:1",
+                    "mtu": 9000,
+                    "name": "Ampath2-eth1",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath2:10",
+                    "mtu": 9000,
+                    "name": "Ampath2-eth10",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath2:12",
+                    "mtu": 9000,
+                    "name": "Ampath2-eth12",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath2:4",
+                    "mtu": 9000,
+                    "name": "Ampath2-eth4",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath2:51",
+                    "mtu": 9000,
+                    "name": "Ampath2-eth51",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath2:8",
+                    "mtu": 9000,
+                    "name": "Ampath2-eth8",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        },
+        {
+            "id": "urn:sdx:node:amlight.net:SoL2",
+            "location": {
+                "address": "Equinix SP4, Sao Paulo, Brazil",
+                "latitude": "0.0",
+                "longitude": "40.0"
+            },
+            "name": "SoL2",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:amlight.net:SoL2:17",
+                    "mtu": 9000,
+                    "name": "SoL2-eth17",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:SoL2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:SoL2:2",
+                    "mtu": 9000,
+                    "name": "SoL2-eth2",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:SoL2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:SoL2:3",
+                    "mtu": 9000,
+                    "name": "SoL2-eth3",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:SoL2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:SoL2:41",
+                    "mtu": 9000,
+                    "name": "SoL2-eth41",
+                    "nni": "urn:sdx:port:sax.net:Sax02:41",
+                    "node": "urn:sdx:node:amlight.net:SoL2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:SoL2:5",
+                    "mtu": 9000,
+                    "name": "SoL2-eth5",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:SoL2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:SoL2:52",
+                    "mtu": 9000,
+                    "name": "SoL2-eth52",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:SoL2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        },
+        {
+            "id": "urn:sdx:node:amlight.net:SanJuan",
+            "location": {
+                "address": "Hub787, San Juan, Puerto Rico",
+                "latitude": "0.0",
+                "longitude": "30.0"
+            },
+            "name": "SanJuan",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:amlight.net:SanJuan:53",
+                    "mtu": 9000,
+                    "name": "SanJuan-eth53",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:SanJuan",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:SanJuan:7",
+                    "mtu": 9000,
+                    "name": "SanJuan-eth7",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:SanJuan",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:SanJuan:8",
+                    "mtu": 9000,
+                    "name": "SanJuan-eth8",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:SanJuan",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        },
+        {
+            "id": "urn:sdx:node:amlight.net:AndesLight2",
+            "location": {
+                "address": "CenturyLink, Santiago, Chile",
+                "latitude": "0.0",
+                "longitude": "60.0"
+            },
+            "name": "AndesLight2",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:amlight.net:AndesLight2:4",
+                    "mtu": 9000,
+                    "name": "AL2-eth4",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:AndesLight2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:AndesLight2:54",
+                    "mtu": 9000,
+                    "name": "AL2-eth54",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:AndesLight2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:AndesLight2:6",
+                    "mtu": 9000,
+                    "name": "AL2-eth6",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:AndesLight2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:AndesLight2:7",
+                    "mtu": 9000,
+                    "name": "AL2-eth7",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:AndesLight2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        },
+        {
+            "id": "urn:sdx:node:amlight.net:AndesLight3",
+            "location": {
+                "address": "CenturyLink, Santiago, Chile",
+                "latitude": "0.0",
+                "longitude": "50.0"
+            },
+            "name": "AndesLight3",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:amlight.net:AndesLight3:5",
+                    "mtu": 9000,
+                    "name": "AL3-eth5",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:AndesLight3",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:AndesLight3:55",
+                    "mtu": 9000,
+                    "name": "AL3-eth55",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:AndesLight3",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:AndesLight3:6",
+                    "mtu": 9000,
+                    "name": "AL3-eth6",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:AndesLight3",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        },
+        {
+            "id": "urn:sdx:node:amlight.net:Ampath3",
+            "location": {
+                "address": "Equinix MI1, Miami, FL",
+                "latitude": "0.0",
+                "longitude": "-10.0"
+            },
+            "name": "Ampath3",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath3:10",
+                    "mtu": 9000,
+                    "name": "Ampath3-eth10",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath3",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath3:56",
+                    "mtu": 9000,
+                    "name": "Ampath3-eth56",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath3",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath3:9",
+                    "mtu": 9000,
+                    "name": "Ampath3-eth9",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath3",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        },
+        {
+            "id": "urn:sdx:node:amlight.net:Ampath4",
+            "location": {
+                "address": "Equinix MI3, Boca Raton, FL",
+                "latitude": "0.0",
+                "longitude": "0.0"
+            },
+            "name": "Ampath4",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath4:11",
+                    "mtu": 9000,
+                    "name": "Ampath4-eth11",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath4",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath4:13",
+                    "mtu": 9000,
+                    "name": "Ampath4-eth13",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath4",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath4:14",
+                    "mtu": 9000,
+                    "name": "Ampath4-eth14",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath4",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath4:16",
+                    "mtu": 9000,
+                    "name": "Ampath4-eth16",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath4",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath4:57",
+                    "mtu": 9000,
+                    "name": "Ampath4-eth57",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath4",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        },
+        {
+            "id": "urn:sdx:node:amlight.net:Ampath5",
+            "location": {
+                "address": "Equinix MI1, Miami, FL",
+                "latitude": "0.0",
+                "longitude": "10.0"
+            },
+            "name": "Ampath5",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath5:12",
+                    "mtu": 9000,
+                    "name": "Ampath5-eth12",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath5",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath5:13",
+                    "mtu": 9000,
+                    "name": "Ampath5-eth13",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath5",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath5:15",
+                    "mtu": 9000,
+                    "name": "Ampath5-eth15",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath5",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath5:58",
+                    "mtu": 9000,
+                    "name": "Ampath5-eth58",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath5",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        },
+        {
+            "id": "urn:sdx:node:amlight.net:Ampath7",
+            "location": {
+                "address": "Equinix MI1, Miami, FL",
+                "latitude": "0.0",
+                "longitude": "20.0"
+            },
+            "name": "Ampath7",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath7:16",
+                    "mtu": 9000,
+                    "name": "Ampath7-eth16",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath7",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath7:17",
+                    "mtu": 9000,
+                    "name": "Ampath7-eth17",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath7",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:Ampath7:59",
+                    "mtu": 9000,
+                    "name": "Ampath7-eth59",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:Ampath7",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        },
+        {
+            "id": "urn:sdx:node:amlight.net:JAX1",
+            "location": {
+                "address": "CenturyLink, Jacksonville, FL",
+                "latitude": "0.0",
+                "longitude": "70.0"
+            },
+            "name": "JAX1",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:amlight.net:JAX1:14",
+                    "mtu": 9000,
+                    "name": "JAX1-eth14",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:JAX1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:JAX1:15",
+                    "mtu": 9000,
+                    "name": "JAX1-eth15",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:JAX1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:amlight.net:JAX1:60",
+                    "mtu": 9000,
+                    "name": "JAX1-eth60",
+                    "nni": "False",
+                    "node": "urn:sdx:node:amlight.net:JAX1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        }
+    ],
+    "timestamp": "20211015-205215",
+    "version": 1
+}

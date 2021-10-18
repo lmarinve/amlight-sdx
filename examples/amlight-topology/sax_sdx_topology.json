@@ -1,0 +1,201 @@
+{
+    "id": "urn:sdx:topology:sax.rnp.br",
+    "links": [
+        {
+            "availability": 99.5,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:sax.rnp.br:SAX_SW2/31_SAX_SW1/31",
+            "latency": 19,
+            "name": "SAX_SW2/31_SAX_SW1/31",
+            "packet_loss": 0.0025931,
+            "ports": [
+                "urn:sdx:port:sax.rnp.br:SAX_SW2:31",
+                "urn:sdx:port:sax.rnp.br:SAX_SW1:31"
+            ],
+            "residual_bandwidth": 88,
+            "state": "enabled",
+            "status": "up",
+            "type": "intra"
+        },
+        {
+            "availability": 100,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:sax.rnp.br:NO_NAME_39228",
+            "latency": 0,
+            "name": "NO_NAME_39228",
+            "packet_loss": 0,
+            "ports": [
+                "urn:sdx:port:sax.rnp.br:SAX_SW1:40",
+                "urn:sdx:port:amlight.net:Ampath1:40"
+            ],
+            "residual_bandwidth": 100,
+            "state": "enabled",
+            "status": "up",
+            "type": "inter"
+        },
+        {
+            "availability": 100,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:sax.rnp.br:NO_NAME_48691",
+            "latency": 0,
+            "name": "NO_NAME_48691",
+            "packet_loss": 0,
+            "ports": [
+                "urn:sdx:port:sax.rnp.br:SAX_SW1:42",
+                "urn:sdx:port:tenet.net.ac:tenet_sw1:42"
+            ],
+            "residual_bandwidth": 100,
+            "state": "enabled",
+            "status": "up",
+            "type": "inter"
+        },
+        {
+            "availability": 100,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:sax.rnp.br:NO_NAME_82850",
+            "latency": 0,
+            "name": "NO_NAME_82850",
+            "packet_loss": 0,
+            "ports": [
+                "urn:sdx:port:sax.rnp.br:SAX_SW2:41",
+                "urn:sdx:port:amlight.net:SoL2:41"
+            ],
+            "residual_bandwidth": 100,
+            "state": "enabled",
+            "status": "up",
+            "type": "inter"
+        },
+        {
+            "availability": 100,
+            "bandwidth": "10GE",
+            "id": "urn:sdx:link:sax.rnp.br:NO_NAME_32969",
+            "latency": 0,
+            "name": "NO_NAME_32969",
+            "packet_loss": 0,
+            "ports": [
+                "urn:sdx:port:sax.rnp.br:SAX_SW2:43",
+                "urn:sdx:port:tenet.net.ac:tenet_sw2:43"
+            ],
+            "residual_bandwidth": 100,
+            "state": "enabled",
+            "status": "up",
+            "type": "inter"
+        }
+    ],
+    "model_version": "1.0.0",
+    "name": "SAX",
+    "nodes": [
+        {
+            "id": "urn:sdx:node:sax.rnp.br:SAX_SW1",
+            "location": {
+                "address": "Fortaleza, Brazil",
+                "latitude": "0.0",
+                "longitude": "-30.0"
+            },
+            "name": "SAX_SW1",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:sax.rnp.br:SAX_SW1:31",
+                    "mtu": 9000,
+                    "name": "Sax01-eth31",
+                    "nni": "False",
+                    "node": "urn:sdx:node:sax.rnp.br:SAX_SW1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:sax.rnp.br:SAX_SW1:40",
+                    "mtu": 1500,
+                    "name": "Sax01-eth40",
+                    "nni": "urn:sdx:port:amlight.net:Ampath1:40",
+                    "node": "urn:sdx:node:sax.rnp.br:SAX_SW1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:sax.rnp.br:SAX_SW1:42",
+                    "mtu": 1500,
+                    "name": "Sax01-eth42",
+                    "nni": "urn:sdx:port:tenet.net.ac:tenet_sw1:42",
+                    "node": "urn:sdx:node:sax.rnp.br:SAX_SW1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:sax.rnp.br:SAX_SW1:64",
+                    "mtu": 9000,
+                    "name": "Sax01-eth64",
+                    "nni": "False",
+                    "node": "urn:sdx:node:sax.rnp.br:SAX_SW1",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        },
+        {
+            "id": "urn:sdx:node:sax.rnp.br:SAX_SW2",
+            "location": {
+                "address": "Fortaleza, Brazil",
+                "latitude": "0.0",
+                "longitude": "-20.0"
+            },
+            "name": "SAX_SW2",
+            "ports": [
+                {
+                    "id": "urn:sdx:port:sax.rnp.br:SAX_SW2:31",
+                    "mtu": 9000,
+                    "name": "Sax02-eth31",
+                    "nni": "False",
+                    "node": "urn:sdx:node:sax.rnp.br:SAX_SW2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:sax.rnp.br:SAX_SW2:41",
+                    "mtu": 1500,
+                    "name": "Sax02-eth41",
+                    "nni": "urn:sdx:port:amlight.net:SoL2:41",
+                    "node": "urn:sdx:node:sax.rnp.br:SAX_SW2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:sax.rnp.br:SAX_SW2:43",
+                    "mtu": 1500,
+                    "name": "Sax02-eth43",
+                    "nni": "urn:sdx:port:tenet.net.ac:tenet_sw2:43",
+                    "node": "urn:sdx:node:sax.rnp.br:SAX_SW2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                },
+                {
+                    "id": "urn:sdx:port:sax.rnp.br:SAX_SW2:65",
+                    "mtu": 9000,
+                    "name": "Sax02-eth65",
+                    "nni": "False",
+                    "node": "urn:sdx:node:sax.rnp.br:SAX_SW2",
+                    "services": "l2vpn",
+                    "state": "enabled",
+                    "status": "up",
+                    "type": "10GE"
+                }
+            ]
+        }
+    ],
+    "timestamp": "20211015-205249",
+    "version": 1
+}
