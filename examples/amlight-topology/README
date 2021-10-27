@@ -26,7 +26,7 @@ docker run -it --network=host --privileged -v /lib/modules:/lib/modules -v /tmp/
 mn -c
 python /topology/amlight-sax-topology.py
 
-4) Run all initialization scripts
+4) Run all initialization scripts from your local machine:
 
 sh /tmp/amlight-sdx/examples/amlight-topology/amlight_init.sh
 sh /tmp/amlight-sdx/examples/amlight-topology/sax_init.sh
