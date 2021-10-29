@@ -5,12 +5,12 @@ SDX API
 """
 
 import requests
-from napps.amlight.sdx.settings import topology_url
 from flask import jsonify, request
 from kytos.core import rest
 from kytos.core import KytosNApp, log
 from kytos.core.helpers import listen_to
 import napps.amlight.sdx.storehouse
+import napps.amlight.sdx.settings as settings
 from napps.amlight.sdx.topology_class import ParseTopology
 
 
@@ -106,13 +106,14 @@ class Main(KytosNApp):
         try:
             _ = self.get_kytos_topology()
             return True
-        except:
+        except Exception as err:
+            log.info(err)
             return False
 
     @staticmethod
     def get_kytos_topology():
         """retrieve topology from API"""
-        kytos_topology = requests.get(topology_url).json()
+        kytos_topology = requests.get(settings.topology_url).json()
         return kytos_topology["topology"]
 
     @rest('v1/oxp_url', methods=['GET'])
@@ -171,6 +172,9 @@ class Main(KytosNApp):
                 log.info(err)
                 return jsonify("Error in the Storehouse"), 400
 
+        # debug only
+        log.info(self.topology_loaded)
+        log.info(self.test_kytos_topology())
         return jsonify("Topology napp has not loaded"), 401
 
     def create_update_topology(self):
