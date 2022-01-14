@@ -5,14 +5,22 @@ SDX API
 """
 
 import requests
+import napps.amlight.sdx.storehouse
+from napps.amlight.sdx import settings
+from napps.amlight.sdx.topology_class import ParseTopology
 from flask import jsonify, request
 from kytos.core import rest
 from kytos.core import KytosNApp, log
 from kytos.core.helpers import listen_to
-import napps.amlight.sdx.storehouse
-import napps.amlight.sdx.settings as settings
-from napps.amlight.sdx.topology_class import ParseTopology
-
+from kytos.core.napps import NAppsManager
+from openapi_core import create_spec
+from openapi_core.contrib.flask import FlaskOpenAPIRequest
+from openapi_core.validation.request.validators import RequestValidator
+from openapi_spec_validator import validate_spec
+from openapi_spec_validator.readers import read_from_filename
+from werkzeug.exceptions import (BadRequest, Conflict, Forbidden,
+                                 MethodNotAllowed, NotFound,
+                                 UnsupportedMediaType)
 
 class Main(KytosNApp):
     """Main class of amlight/sdx NApp.
@@ -30,6 +38,7 @@ class Main(KytosNApp):
         """
         self.topology_loaded = False
         self.storehouse = None
+
 
     def execute(self):
         """Run after the setup method execution.
@@ -156,33 +165,52 @@ class Main(KytosNApp):
 
         return jsonify(self.oxp_name), 200
 
+
     @rest('v1/topology')
     def get_topology_version(self):
         """ REST to return the topology following the SDX data model"""
         if not self.oxp_url:
-            return jsonify("Submit oxp_url previous to requesting topology schema"), 401
+            return jsonify\
+                    ("Submit oxp_url previous to requesting topology schema"),\
+                    401
 
         if not self.oxp_name:
-            return jsonify("Submit oxp_name previous to requesting topology schema"), 401
+            return jsonify\
+                    ("Submit oxp_name previous to requesting topology schema"),\
+                    401
 
         if self.topology_loaded or self.test_kytos_topology():
             try:
-                return jsonify(self.create_update_topology()), 200
+                topology_update = self.create_update_topology()
+                topology_dict={
+                        "id": topology_update["id"] ,
+                        "name": topology_update["name"],
+                        "version": topology_update["version"],
+                        "model_version": topology_update["model_version"],
+                        "timestamp": topology_update["timestamp"],
+                        "nodes": topology_update["nodes"],
+                        "links": topology_update["links"]
+                        }
+                validate_topology = requests.post(settings.validate_topology, json=topology_dict)
+                if validate_topology.status_code == 200:
+                    return jsonify(topology_update), 200
+                else:
+                    return jsonify(validate_topology.json()), 400
             except Exception as err:
                 log.info(err)
-                return jsonify("Error in the Storehouse"), 400
+                return jsonify("Validation Error"), 400
 
         # debug only
         log.info(self.topology_loaded)
         log.info(self.test_kytos_topology())
         return jsonify("Topology napp has not loaded"), 401
 
+
     def create_update_topology(self):
         """ Function that will take care of initializing the namespace
          kytos.storehouse.version within the storehouse and create a
          box object containing the version data that will be updated
          every time a change is detected in the topology."""
-
         self.storehouse.update_box()
         version = self.storehouse.get_data()["version"]
         return ParseTopology(topology=self.get_kytos_topology(),

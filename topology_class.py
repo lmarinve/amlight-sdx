@@ -1,6 +1,6 @@
 import datetime
 from random import randint
-
+from kytos.core import log
 
 class ParseTopology:
 
@@ -11,28 +11,62 @@ class ParseTopology:
         self.oxp_name = oxp_name
         self.oxp_url = oxp_url
 
+
     def get_kytos_nodes(self):
         return self.kytos_topology["switches"].values()
+
 
     def get_kytos_links(self):
         return self.kytos_topology["links"].values()
 
+
     @staticmethod
     def get_timestamp():
         """Function to obtain the current time_stamp in a specific format"""
-        return datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+        return datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+
 
     @staticmethod
-    def get_port_speed(speed):
-        """Function to obtain the speed of a specific port in the network."""
-        if speed == 12500000000:
-            return "100GE"
-        elif speed == 1250000000:
-            return "10GE"
-        elif speed == 125000000:
-            return "1GE"
+    def get_link_port_speed(speed):
+        """Function to obtain the speed of a specific port in the link."""
+        if speed == "400GE" or speed == 50000000000 or speed == 50000000000.0:
+            return  50000000000
+        elif speed == "100GE" or speed == 12500000000 or speed == 12500000000.0:
+            return  12500000000
+        elif speed == "50GE" or speed == 6250000000 or speed == 6250000000.0:
+            return  6250000000
+        elif speed == "40GE" or speed == 5000000000 or speed == 5000000000.0:
+            return  5000000000
+        elif speed == "25GE" or speed == 3125000000 or speed == 3125000000.0:
+            return  3125000000
+        elif speed == "10GE" or speed == 1250000000 or speed == 1250000000.0:
+            return  1250000000
+        elif speed == "1GE" or speed == 125000000 or speed == 125000000.0:
+            return  125000000
+        else:
+            return 0
+
+
+    @staticmethod
+    def get_type_port_speed(speed):
+        """Function to obtain the speed of a specific port type."""
+        if speed == "400GE" or speed == 50000000000 or speed == 50000000000.0:
+            return  "400GE"
+        elif speed == "100GE" or speed == 12500000000 or speed == 12500000000.0:
+            return  "100GE"
+        elif speed == "50GE" or speed == 6250000000 or speed == 6250000000.0:
+            return  "50GE"
+        elif speed == "40GE" or speed == 5000000000 or speed == 5000000000.0:
+            return  "40GE"
+        elif speed == "25GE" or speed == 3125000000 or speed == 3125000000.0:
+            return  "25GE"
+        elif speed == "10GE" or speed == 1250000000 or speed == 1250000000.0:
+            return  "10GE"
+        elif speed == "1GE" or speed == 125000000 or speed == 125000000.0:
+            return  "1GE"
         else:
             return "Other"
+
 
     @staticmethod
     def get_status(status):
@@ -66,12 +100,11 @@ class ParseTopology:
         sdx_port["id"] = self.get_port_urn(sdx_node_name, interface["port_number"])
         sdx_port["name"] = interface["name"]
         sdx_port["node"] = f"urn:sdx:node:{self.oxp_url}:{sdx_node_name}"
-        sdx_port["type"] = self.get_port_speed(interface["speed"])
+        sdx_port["type"] = self.get_type_port_speed(interface["speed"])
         sdx_port["status"] = self.get_status(interface["active"])
         sdx_port["state"] = self.get_state(interface["enabled"])
         sdx_port["services"] = "l2vpn"
         sdx_port["nni"] = "False"
-
         if "nni" in interface["metadata"]:
             sdx_port["nni"] = interface["metadata"]["nni"]
 
@@ -122,9 +155,9 @@ class ParseTopology:
         if "address" in kytos_node["metadata"]:
             sdx_node["location"]["address"] = kytos_node["metadata"]["address"]
         if "lat" in kytos_node["metadata"]:
-            sdx_node["location"]["latitude"] = kytos_node["metadata"]["lat"]
+            sdx_node["location"]["latitude"] = float(kytos_node["metadata"]["lat"])
         if "lng" in kytos_node["metadata"]:
-            sdx_node["location"]["longitude"] = kytos_node["metadata"]["lng"]
+            sdx_node["location"]["longitude"] = float(kytos_node["metadata"]["lng"])
 
         sdx_node["ports"] = self.get_ports(sdx_node["name"], kytos_node["interfaces"])
 
@@ -180,7 +213,7 @@ class ParseTopology:
                 sdx_link[item] = kytos_link["metadata"][item]
             else:
                 if item in ["bandwidth"]:
-                    sdx_link[item] = self.get_port_speed(kytos_link["endpoint_a"]["speed"])
+                    sdx_link[item] = self.get_link_port_speed(kytos_link["endpoint_a"]["speed"])
                 elif item in ["residual_bandwidth", "availability"]:
                     sdx_link[item] = 100
                 else:
@@ -232,7 +265,7 @@ class ParseTopology:
                         sdx_link["ports"] = [port_id, kytos_interface["metadata"]["nni"]]
 
                         sdx_link["type"] = "inter"
-                        sdx_link["bandwidth"] = self.get_port_speed(kytos_interface["speed"])
+                        sdx_link["bandwidth"] = self.get_link_port_speed(kytos_interface["speed"])
                         sdx_link["status"] = "up" if kytos_interface["active"] else "down"
                         sdx_link["state"] = "enabled" if kytos_interface["enabled"] else "disabled"
 
